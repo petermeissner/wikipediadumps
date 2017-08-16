@@ -4,12 +4,12 @@
 \alias{get_dumps}
 \title{function that downloads dump files for specific dates}
 \usage{
-get_dumps(ts, dir = ".")
+get_dumps(ts, directory = NULL)
 }
 \arguments{
 \item{ts}{timestamp e.g. "20071201" or shorter that will be used to match dump links}
 
-\item{dir}{directory to store downloads in}
+\item{directory}{directory to store downloads in}
 }
 \description{
 function that downloads dump files for specific dates

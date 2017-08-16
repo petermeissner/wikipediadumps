@@ -4,10 +4,12 @@
 \alias{get_dump_links}
 \title{get links for dump downloads}
 \usage{
-get_dump_links(force = FALSE)
+get_dump_links(force = FALSE, directory = NULL)
 }
 \arguments{
 \item{force}{force re-downloading and re-extracting dump links}
+
+\item{directory}{path to store dump_links.txt file}
 }
 \description{
 get links for dump downloads

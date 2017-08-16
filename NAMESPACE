@@ -3,4 +3,5 @@
 export("%>%")
 export(get_dump_links)
 export(get_dumps)
+export(wpd_options)
 importFrom(magrittr,"%>%")

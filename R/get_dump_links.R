@@ -2,10 +2,28 @@
 
 #' get links for dump downloads
 #'
+#' @param directory path to store dump_links.txt file
 #' @param force force re-downloading and re-extracting dump links
+#'
 #' @export
 #'
-get_dump_links <- function(force = FALSE){
+get_dump_links <- function(force = FALSE, directory = NULL ){
+
+  # check if links should be read/write to disk cache file or not
+  if( is.null(directory) ){
+    directory <- wpd_options()$directory
+  }
+
+  if( !is.null(directory) ){
+    dump_links_path <- paste0(directory,"/dump_links.txt")
+  }else{
+    dump_links_path <- NULL
+  }
+
+
+  if( force == FALSE && file.exists(dump_links_path) ){
+    wpd_cache$dump_links <- readLines(dump_links_path)
+  }
 
   if( force == TRUE || is.null(wpd_cache$dump_links) ){
     # some baseline variables
@@ -95,6 +113,13 @@ get_dump_links <- function(force = FALSE){
   }
 
   # return
+  if( !is.null(directory) ){
+    writeLines(
+      text = wpd_cache$dump_links,
+      con  = dump_links_path
+    )
+  }
+
   return(wpd_cache$dump_links)
 }
 

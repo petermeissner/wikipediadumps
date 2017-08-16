@@ -3,14 +3,20 @@
 #'
 #'
 #' @param ts timestamp e.g. "20071201" or shorter that will be used to match dump links
-#' @param dir directory to store downloads in
+#' @param directory directory to store downloads in
 #'
 #' @export
 #'
 #'
-get_dumps <- function(ts, dir="."){
+get_dumps <- function(ts, directory = NULL ){
+
+  if( is.null(directory) ){
+    directory <- wpd_options()$directory
+  }
+  stopifnot(!is.null(directory))
+
   # decide which links have to be downloaded
-  links <- get_dump_links()
+  links <- get_dump_links(directory = directory)
   index <-
     stringr::str_extract(basename(links), "\\d{8}") %>%
     grep(paste0("^", ts), .)
@@ -21,7 +27,7 @@ get_dumps <- function(ts, dir="."){
   RES <- character(length(to_be_downloaded))
   for( i in seq_along(to_be_downloaded) ){
     destfile <-
-      gsub("//", "/", paste0(dir, "/", basename(to_be_downloaded[i])))
+      gsub("//", "/", paste0(directory, "/", basename(to_be_downloaded[i])))
 
     if( !file.exists(destfile) ){
       RES[[i]] <-
