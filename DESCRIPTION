@@ -1,7 +1,7 @@
 Package: wikipediadumps
 Title: Download, Extract, and Transform Wikipedia Pagecount Dumps
-Version: 0.0.1.90000
-Date: 2017-08-09
+Version: 0.1.1.90000
+Date: 2017-08-25
 Author: Peter Meissner [aut, cre]
 Maintainer: Peter Meissner <retep.meissner@gmail.com>
 Description: This package is is a worker to download, extract and transform 
@@ -16,7 +16,10 @@ Imports:
     utils,
     xml2 (>= 1.1.1),
     hellno (>= 0.0.1), 
-    dplyr (>= 0.7.2)
+    dplyr (>= 0.7.2),
+    RSQLite (>= 2.0),
+    urltools (>= 1.6.0),
+    parallel
 Suggests:
     testthat,
     knitr
