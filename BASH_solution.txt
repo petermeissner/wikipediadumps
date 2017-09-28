@@ -1,0 +1,4 @@
+zcat data/test.gz | egrep "^de " --binary-files=text > de.txt
+egrep "^de " pagecounts-20071209-180000 --binary-files=text
+
+
